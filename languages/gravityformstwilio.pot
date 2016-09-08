@@ -1,13 +1,13 @@
-# Copyright 2009-2015 Rocketgenius, Inc.
+# Copyright 2009-2016 Rocketgenius, Inc.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gravity Forms Twilio Add-On 2.1.2\n"
+"Project-Id-Version: Gravity Forms Twilio Add-On 2.2\n"
 "Report-Msgid-Bugs-To: http://www.gravtiyhelp.com\n"
-"POT-Creation-Date: 2015-05-18 07:40:37+00:00\n"
+"POT-Creation-Date: 2016-08-31 20:27:23+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rocketgenius <customerservice@rocketgenius.com>\n"
 "Language-Team: Rocketgenius <customerservice@rocketgenius.com>\n"
 "X-Generator: Gravity Forms Build Server\n"
@@ -24,116 +24,89 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Textdomain-Support: yes\n"
 
-#: class-gf-twilio.php:41
+#: class-gf-twilio.php:111
 msgid "Send SMS only when a payment is received."
 msgstr ""
 
-#: class-gf-twilio.php:102
-msgid "Twilio Add-On v2.0"
-msgstr ""
-
-#: class-gf-twilio.php:105
-msgid ""
-"Thank you for updating! The new version of the Gravity Forms Twilio Add-On "
-"makes changes to how you manage your Twilio integration."
-msgstr ""
-
-#: class-gf-twilio.php:110
-msgid "Manage Twilio Contextually"
-msgstr ""
-
-#: class-gf-twilio.php:112
-msgid ""
-"Twilio Feeds are now accessed via the Twilio sub-menu within the Form "
-"Settings for the Form with which you would like to integrate Twilio."
-msgstr ""
-
-#: class-gf-twilio.php:123
-msgid "I understand this change, dismiss this message!"
-msgstr ""
-
-#: class-gf-twilio.php:125
-msgid "Please wait..."
-msgstr ""
-
-#: class-gf-twilio.php:137
+#: class-gf-twilio.php:127
 msgid "Twilio Account Information"
 msgstr ""
 
-#: class-gf-twilio.php:139
+#: class-gf-twilio.php:129
 msgid ""
 "Twilio provides a web-service API for businesses to build scalable and "
-"reliable communication apps. %1$s Sign up for a Twilio account%2$s"
+"reliable communication apps. %1$s Sign up for a Twilio account%2$s to "
+"receive SMS messages when a Gravity Form is submitted."
 msgstr ""
 
-#: class-gf-twilio.php:145
+#: class-gf-twilio.php:135
 msgid "Account SID"
 msgstr ""
 
-#: class-gf-twilio.php:152
+#: class-gf-twilio.php:142
 msgid "Auth Token"
 msgstr ""
 
-#: class-gf-twilio.php:160
+#: class-gf-twilio.php:150
 msgid "Bitly Account Information"
 msgstr ""
 
-#: class-gf-twilio.php:162
+#: class-gf-twilio.php:152
 msgid ""
 "Bitly helps you shorten, track and analyze your links. Enter your Bitly "
 "account information below to automatically shorten URLs in your SMS "
 "message. If you don't have a Bitly account, %1$s sign-up for one here%2$s"
 msgstr ""
 
-#: class-gf-twilio.php:168
+#: class-gf-twilio.php:158
 msgid "Login"
 msgstr ""
 
-#: class-gf-twilio.php:175
+#: class-gf-twilio.php:165
 msgid "API Key"
 msgstr ""
 
-#: class-gf-twilio.php:193 class-gf-twilio.php:196 class-gf-twilio.php:201
-#: class-gf-twilio.php:203 class-gf-twilio.php:253
+#: class-gf-twilio.php:195 class-gf-twilio.php:240 class-gf-twilio.php:244
+msgid "Name"
+msgstr ""
+
+#: class-gf-twilio.php:196 class-gf-twilio.php:248 class-gf-twilio.php:251
+msgid "From"
+msgstr ""
+
+#: class-gf-twilio.php:197 class-gf-twilio.php:219 class-gf-twilio.php:222
+#: class-gf-twilio.php:227 class-gf-twilio.php:229
 msgid "To Number"
 msgstr ""
 
-#: class-gf-twilio.php:196
+#: class-gf-twilio.php:222
 msgid ""
 "Phone number to send this message to. For Twilio trial accounts, you can "
 "only send SMS messages to validated numbers. To validate a number, login to "
 "your Twilio account and navigate to the 'Numbers' tab."
 msgstr ""
 
-#: class-gf-twilio.php:203
+#: class-gf-twilio.php:229
 msgid "Phone number to send this message to."
 msgstr ""
 
-#: class-gf-twilio.php:210
+#: class-gf-twilio.php:235
 msgid "Twilio Feed Settings"
 msgstr ""
 
-#: class-gf-twilio.php:215 class-gf-twilio.php:219 class-gf-twilio.php:251
-msgid "Name"
-msgstr ""
-
-#: class-gf-twilio.php:219
+#: class-gf-twilio.php:244
 msgid "Enter a feed name to uniquely identify this setup."
 msgstr ""
 
-#: class-gf-twilio.php:223 class-gf-twilio.php:226 class-gf-twilio.php:252
-msgid "From Number"
+#: class-gf-twilio.php:251
+msgid "Phone number or Alphanumeric Sender ID that the message will be sent FROM."
 msgstr ""
 
-#: class-gf-twilio.php:226
-msgid "Phone number that the message will be sent FROM."
-msgstr ""
-
-#: class-gf-twilio.php:231 class-gf-twilio.php:233
+#: class-gf-twilio.php:258 class-gf-twilio.php:260
 msgid "Message"
 msgstr ""
 
-#: class-gf-twilio.php:233
+#: class-gf-twilio.php:260
 msgid ""
 "Write the SMS message you would like to be sent. You can insert fields "
 "submitted by the user by selecting them from the 'Insert merge code' drop "
@@ -141,41 +114,79 @@ msgid ""
 "characters will automatically be split into multiple SMS messages."
 msgstr ""
 
-#: class-gf-twilio.php:237 class-gf-twilio.php:241
+#: class-gf-twilio.php:264 class-gf-twilio.php:268
 msgid "Conditional Logic"
 msgstr ""
 
-#: class-gf-twilio.php:239
+#: class-gf-twilio.php:266
 msgid "Enable"
 msgstr ""
 
-#: class-gf-twilio.php:240
+#: class-gf-twilio.php:267
 msgid "Export to Twilio if"
 msgstr ""
 
-#: class-gf-twilio.php:241
+#: class-gf-twilio.php:268
 msgid ""
 "When conditional logic is enabled, form submissions will only be exported "
 "to Twilio when the condition is met. When disabled, all form submissions "
 "will be exported."
 msgstr ""
 
-#: class-gf-twilio.php:263
-msgid "To get started, please configure your %sTwilio Settings.%s"
-msgstr ""
-
-#: class-gf-twilio.php:285 class-gf-twilio.php:287
+#: class-gf-twilio.php:296 class-gf-twilio.php:298
 msgid "Shorten URLs"
 msgstr ""
 
-#: class-gf-twilio.php:287
+#: class-gf-twilio.php:298
 msgid "Enable this option to automatically shorten all URLs in your SMS message."
 msgstr ""
 
-#: class-gf-twilio.php:295
+#: class-gf-twilio.php:306
 msgid ""
 "Bitly account required. %sEnter your Bitly account information%s to enable "
 "this option."
+msgstr ""
+
+#: class-gf-twilio.php:344
+msgid "The Alphanumeric Sender ID must be no longer than 11 characters."
+msgstr ""
+
+#: class-gf-twilio.php:346
+msgid ""
+"The Alphanumeric Sender ID only supports upper and lower case letters, the "
+"digits 0 through 9, and spaces."
+msgstr ""
+
+#: class-gf-twilio.php:397
+msgid "Use Alphanumeric Sender ID"
+msgstr ""
+
+#: class-gf-twilio.php:725
+msgid "Twilio Add-On v2.0"
+msgstr ""
+
+#: class-gf-twilio.php:728
+msgid ""
+"Thank you for updating! The new version of the Gravity Forms Twilio Add-On "
+"makes changes to how you manage your Twilio integration."
+msgstr ""
+
+#: class-gf-twilio.php:733
+msgid "Manage Twilio Contextually"
+msgstr ""
+
+#: class-gf-twilio.php:735
+msgid ""
+"Twilio Feeds are now accessed via the Twilio sub-menu within the Form "
+"Settings for the Form with which you would like to integrate Twilio."
+msgstr ""
+
+#: class-gf-twilio.php:746
+msgid "I understand this change, dismiss this message!"
+msgstr ""
+
+#: class-gf-twilio.php:748
+msgid "Please wait..."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
