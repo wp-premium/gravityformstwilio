@@ -1,9 +1,9 @@
 -----------------------------------------------
-Version 2.1.2
+Version 2.2
     - Added conditional logic support to the feed settings.
-
------------------------------------------------
-Version 2.1.1
+    - Updated to use the newer /Messages endpoint instead of /SMS/Messages.
+    - Updated feed From Number setting to use the select_custom field type allowing use of Alphanumeric sender IDs (Not supported by all countries: https://www.twilio.com/help/faq/sms/what-countries-does-twilio-support-alphanumeric-sender-id).
+    - Updated minimum Gravity Forms version to 1.9.11.
     - Fixed an issue with the upgrade routine which caused it run even if a pre-framework version hadn't been installed.
 
 -----------------------------------------------
