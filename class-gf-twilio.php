@@ -149,7 +149,7 @@ class GFTwilio extends GFFeedAddOn {
 			array(
 				'title'       => esc_html__( 'Bitly Account Information', 'gravityformstwilio' ),
 				'description' => sprintf(
-					esc_html__( 'Bitly helps you shorten, track and analyze your links. Enter your Bitly account information below to automatically shorten URLs in your SMS message. If you don\'t have a Bitly account, %1$s sign-up for one here%2$s', 'gravityformstwilio' ),
+					esc_html__( 'Bitly helps you shorten, track and analyze your links. Enter your Bitly account information below to automatically shorten URLs in your SMS message. If you don\'t have a Bitly account, %1$ssign-up for one here%2$s', 'gravityformstwilio' ),
 					'<a href="http://bit.ly" target="_blank">', '</a>.'
 				),
 				'fields'      => array(
@@ -219,7 +219,7 @@ class GFTwilio extends GFFeedAddOn {
 				'label'   => esc_html__( 'To Number', 'gravityformstwilio' ),
 				'type'    => 'select',
 				'choices' => $this->get_twilio_phone_numbers( 'outgoing_numbers', $account_info ),
-				'tooltip' => '<h6>' . esc_html__( 'To Number', 'gravityformstwilio' ) . '</h6>' . esc_html__( 'Phone number to send this message to. For Twilio trial accounts, you can only send SMS messages to validated numbers. To validate a number, login to your Twilio account and navigate to the \'Numbers\' tab.', 'gravityformstwilio' ),
+				'tooltip' => '<h6>' . esc_html__( 'To Number', 'gravityformstwilio' ) . '</h6>' . esc_html__( 'Phone number to send this message to. For Twilio trial accounts, you can only send SMS messages to validated numbers. To validate a number, log in to your Twilio account and navigate to the \'Numbers\' tab.', 'gravityformstwilio' ),
 			);
 		} else {
 			$to_number_setting = array(

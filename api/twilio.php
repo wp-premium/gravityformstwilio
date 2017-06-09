@@ -129,7 +129,17 @@
 
             // initialize a new curl object
             $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+
+            /***
+             * Determines if the cURL CURLOPT_SSL_VERIFYPEER option is enabled.
+             *
+             * @since 2.3
+             *
+             * @param bool is_enabled True to enable peer verification. False to bypass peer verification. Defaults to true.
+             */
+            $verify_peer = apply_filters( 'gform_twilio_verifypeer', true );
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $verify_peer);
 
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
             switch(strtoupper($method)) {
