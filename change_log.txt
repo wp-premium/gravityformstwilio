@@ -1,4 +1,18 @@
-# 2.3
+# 2.4.1 | 2017-08-02
+   - Fixed Twilio PHP SDK not being included with final build.
+
+
+# 2.4 | 2017-08-02
+   - Added "gform_twilio_message" filter to modify the SMS message arguments before it is sent.
+   - Added support for using merge tags in the To Number feed setting.
+   - Added support for using test Twilio credentials.
+   - Fixed a PHP warning for the From setting on the edit feed page if the API request for the numbers returned an error.
+   - Fixed URLs not shortening in message if multiple merge tags are used.
+   - Updated Twilio PHP SDK.
+   - Updated URL shortened to use latest Bitly API.
+
+
+# 2.3 | 2017-04-28
    - Added security enhancements.
    - Added translations.
 
