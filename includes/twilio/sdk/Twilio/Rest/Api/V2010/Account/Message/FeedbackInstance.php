@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\Message;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Deserialize;
 use Twilio\Exceptions\TwilioException;
 use Twilio\InstanceResource;
@@ -46,10 +51,7 @@ class FeedbackInstance extends InstanceResource {
             'uri' => Values::array_get($payload, 'uri'),
         );
 
-        $this->solution = array(
-            'accountSid' => $accountSid,
-            'messageSid' => $messageSid,
-        );
+        $this->solution = array('accountSid' => $accountSid, 'messageSid' => $messageSid);
     }
 
     /**

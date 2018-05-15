@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\Message;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\ListResource;
 use Twilio\Options;
 use Twilio\Values;
@@ -27,10 +32,7 @@ class FeedbackList extends ListResource {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array(
-            'accountSid' => $accountSid,
-            'messageSid' => $messageSid,
-        );
+        $this->solution = array('accountSid' => $accountSid, 'messageSid' => $messageSid);
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/Messages/' . rawurlencode($messageSid) . '/Feedback.json';
     }
@@ -44,9 +46,7 @@ class FeedbackList extends ListResource {
     public function create($options = array()) {
         $options = new Values($options);
 
-        $data = Values::of(array(
-            'Outcome' => $options['outcome'],
-        ));
+        $data = Values::of(array('Outcome' => $options['outcome']));
 
         $payload = $this->version->create(
             'POST',

@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\ListResource;
 use Twilio\Options;
 use Twilio\Serialize;
@@ -27,9 +32,7 @@ class MobileList extends ListResource {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array(
-            'accountSid' => $accountSid,
-        );
+        $this->solution = array('accountSid' => $accountSid);
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/IncomingPhoneNumbers/Mobile.json';
     }
@@ -155,6 +158,8 @@ class MobileList extends ListResource {
             'VoiceFallbackUrl' => $options['voiceFallbackUrl'],
             'VoiceMethod' => $options['voiceMethod'],
             'VoiceUrl' => $options['voiceUrl'],
+            'IdentitySid' => $options['identitySid'],
+            'AddressSid' => $options['addressSid'],
         ));
 
         $payload = $this->version->create(
@@ -164,11 +169,7 @@ class MobileList extends ListResource {
             $data
         );
 
-        return new MobileInstance(
-            $this->version,
-            $payload,
-            $this->solution['accountSid']
-        );
+        return new MobileInstance($this->version, $payload, $this->solution['accountSid']);
     }
 
     /**

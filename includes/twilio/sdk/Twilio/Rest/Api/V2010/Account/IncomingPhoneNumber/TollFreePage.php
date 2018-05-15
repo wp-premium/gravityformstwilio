@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Page;
 
 class TollFreePage extends Page {
@@ -20,11 +25,7 @@ class TollFreePage extends Page {
     }
 
     public function buildInstance(array $payload) {
-        return new TollFreeInstance(
-            $this->version,
-            $payload,
-            $this->solution['accountSid']
-        );
+        return new TollFreeInstance($this->version, $payload, $this->solution['accountSid']);
     }
 
     /**

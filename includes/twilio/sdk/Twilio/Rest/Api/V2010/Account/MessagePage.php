@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Page;
 
 class MessagePage extends Page {
@@ -20,11 +25,7 @@ class MessagePage extends Page {
     }
 
     public function buildInstance(array $payload) {
-        return new MessageInstance(
-            $this->version,
-            $payload,
-            $this->solution['accountSid']
-        );
+        return new MessageInstance($this->version, $payload, $this->solution['accountSid']);
     }
 
     /**

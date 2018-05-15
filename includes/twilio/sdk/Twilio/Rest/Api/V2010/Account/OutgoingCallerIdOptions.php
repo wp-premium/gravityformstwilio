@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Options;
 use Twilio\Values;
 

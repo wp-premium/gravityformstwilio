@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Domain;
 use Twilio\Exceptions\TwilioException;
 use Twilio\Rest\Api\V2010\AccountContext;
