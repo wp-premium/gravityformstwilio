@@ -1,11 +1,18 @@
 <?php
+
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
 /*
 Plugin Name: Gravity Forms Twilio Add-On
-Plugin URI: http://www.gravityforms.com
+Plugin URI: https://www.gravityforms.com
 Description: Integrates Gravity Forms with Twilio, allowing SMS messages to be sent upon submitting a Gravity Form
-Version: 2.4.1
+Version: 2.5
 Author: rocketgenius
-Author URI: http://www.rocketgenius.com
+Author URI: https://www.rocketgenius.com
+License: GPL-2.0+
 Text Domain: gravityformstwilio
 Domain Path: /languages
 
@@ -27,7 +34,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-define( 'GF_TWILIO_VERSION', '2.4.1' );
+define( 'GF_TWILIO_VERSION', '2.5' );
 
 // If Gravity Forms is loaded, bootstrap the Twilio Add-On.
 add_action( 'gform_loaded', array( 'GF_Twilio_Bootstrap', 'load' ), 5 );

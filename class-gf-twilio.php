@@ -1,5 +1,10 @@
 <?php
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
+
 GFForms::include_feed_addon_framework();
 
 /**
@@ -369,7 +374,7 @@ class GFTwilio extends GFFeedAddOn {
 						'tooltip'             => sprintf(
 							'<h6>%s</h6>%s',
 							esc_html__( 'Message', 'gravityformstwilio' ),
-							esc_html__( 'Write the SMS message you would like to be sent. You can insert fields submitted by the user by selecting them from the \'Insert merge code\' drop down. SMS message are limited to 1600 characters. Messages larger than 160 characters will automatically be split into multiple SMS messages.', 'gravityformstwilio' )
+							esc_html__( 'Write the SMS message you would like to be sent. You can insert fields submitted by the user by selecting them from the \'Insert merge code\' drop down. SMS message are limited to 1600 characters. Messages larger than 1600 characters will automatically be split into multiple SMS messages.', 'gravityformstwilio' )
 						),
 					),
 					array(

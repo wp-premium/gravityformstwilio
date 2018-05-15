@@ -1,4 +1,9 @@
-# 2.4.1 | 2017-08-02
+# 2.5 | 2018-04-12
+   - Added security enhancements.
+   - Added GPL to plugin header.
+   - Updated Plugin URI and Author URI to use https.
+   - Updated Twilio PHP SDK.
+   - Fixed warning regarding the number of characters allowed for a message to display 1600 instead of 160.
    - Fixed Twilio PHP SDK not being included with final build.
 
 

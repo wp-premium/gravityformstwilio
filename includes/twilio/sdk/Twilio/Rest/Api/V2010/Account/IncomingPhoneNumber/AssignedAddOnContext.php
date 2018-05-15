@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Exceptions\TwilioException;
 use Twilio\InstanceContext;
 use Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber\AssignedAddOn\AssignedAddOnExtensionList;
@@ -37,11 +42,7 @@ class AssignedAddOnContext extends InstanceContext {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array(
-            'accountSid' => $accountSid,
-            'resourceSid' => $resourceSid,
-            'sid' => $sid,
-        );
+        $this->solution = array('accountSid' => $accountSid, 'resourceSid' => $resourceSid, 'sid' => $sid);
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/IncomingPhoneNumbers/' . rawurlencode($resourceSid) . '/AssignedAddOns/' . rawurlencode($sid) . '.json';
     }

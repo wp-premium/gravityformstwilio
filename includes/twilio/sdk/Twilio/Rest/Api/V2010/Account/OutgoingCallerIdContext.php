@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\InstanceContext;
 use Twilio\Options;
 use Twilio\Values;
@@ -27,10 +32,7 @@ class OutgoingCallerIdContext extends InstanceContext {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array(
-            'accountSid' => $accountSid,
-            'sid' => $sid,
-        );
+        $this->solution = array('accountSid' => $accountSid, 'sid' => $sid);
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/OutgoingCallerIds/' . rawurlencode($sid) . '.json';
     }
@@ -66,9 +68,7 @@ class OutgoingCallerIdContext extends InstanceContext {
     public function update($options = array()) {
         $options = new Values($options);
 
-        $data = Values::of(array(
-            'FriendlyName' => $options['friendlyName'],
-        ));
+        $data = Values::of(array('FriendlyName' => $options['friendlyName']));
 
         $payload = $this->version->update(
             'POST',

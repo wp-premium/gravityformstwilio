@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Page;
 
 class MobilePage extends Page {
@@ -20,11 +25,7 @@ class MobilePage extends Page {
     }
 
     public function buildInstance(array $payload) {
-        return new MobileInstance(
-            $this->version,
-            $payload,
-            $this->solution['accountSid']
-        );
+        return new MobileInstance($this->version, $payload, $this->solution['accountSid']);
     }
 
     /**

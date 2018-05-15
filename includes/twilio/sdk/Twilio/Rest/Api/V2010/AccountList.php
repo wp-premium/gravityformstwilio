@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\ListResource;
 use Twilio\Options;
 use Twilio\Values;
@@ -39,9 +44,7 @@ class AccountList extends ListResource {
     public function create($options = array()) {
         $options = new Values($options);
 
-        $data = Values::of(array(
-            'FriendlyName' => $options['friendlyName'],
-        ));
+        $data = Values::of(array('FriendlyName' => $options['friendlyName']));
 
         $payload = $this->version->create(
             'POST',
@@ -50,10 +53,7 @@ class AccountList extends ListResource {
             $data
         );
 
-        return new AccountInstance(
-            $this->version,
-            $payload
-        );
+        return new AccountInstance($this->version, $payload);
     }
 
     /**
@@ -155,10 +155,7 @@ class AccountList extends ListResource {
      * @return \Twilio\Rest\Api\V2010\AccountContext 
      */
     public function getContext($sid) {
-        return new AccountContext(
-            $this->version,
-            $sid
-        );
+        return new AccountContext($this->version, $sid);
     }
 
     /**
