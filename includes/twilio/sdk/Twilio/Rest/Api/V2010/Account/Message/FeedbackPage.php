@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\Message;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Page;
 
 class FeedbackPage extends Page {

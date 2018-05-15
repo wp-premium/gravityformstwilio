@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\Message;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\ListResource;
 use Twilio\Options;
 use Twilio\Serialize;
@@ -28,10 +33,7 @@ class MediaList extends ListResource {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array(
-            'accountSid' => $accountSid,
-            'messageSid' => $messageSid,
-        );
+        $this->solution = array('accountSid' => $accountSid, 'messageSid' => $messageSid);
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/Messages/' . rawurlencode($messageSid) . '/Media.json';
     }

@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Deserialize;
 use Twilio\Exceptions\TwilioException;
 use Twilio\InstanceResource;
@@ -49,10 +54,7 @@ class OutgoingCallerIdInstance extends InstanceResource {
             'uri' => Values::array_get($payload, 'uri'),
         );
 
-        $this->solution = array(
-            'accountSid' => $accountSid,
-            'sid' => $sid ?: $this->properties['sid'],
-        );
+        $this->solution = array('accountSid' => $accountSid, 'sid' => $sid ?: $this->properties['sid']);
     }
 
     /**
@@ -91,9 +93,7 @@ class OutgoingCallerIdInstance extends InstanceResource {
      * @return OutgoingCallerIdInstance Updated OutgoingCallerIdInstance
      */
     public function update($options = array()) {
-        return $this->proxy()->update(
-            $options
-        );
+        return $this->proxy()->update($options);
     }
 
     /**

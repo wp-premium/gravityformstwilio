@@ -9,6 +9,11 @@
 
 namespace Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
+
 use Twilio\Options;
 use Twilio\Values;
 
@@ -40,10 +45,12 @@ abstract class MobileOptions {
      * @param string $voiceFallbackUrl The voice_fallback_url
      * @param string $voiceMethod The voice_method
      * @param string $voiceUrl The voice_url
+     * @param string $identitySid The identity_sid
+     * @param string $addressSid The address_sid
      * @return CreateMobileOptions Options builder
      */
-    public static function create($apiVersion = Values::NONE, $friendlyName = Values::NONE, $smsApplicationSid = Values::NONE, $smsFallbackMethod = Values::NONE, $smsFallbackUrl = Values::NONE, $smsMethod = Values::NONE, $smsUrl = Values::NONE, $statusCallback = Values::NONE, $statusCallbackMethod = Values::NONE, $voiceApplicationSid = Values::NONE, $voiceCallerIdLookup = Values::NONE, $voiceFallbackMethod = Values::NONE, $voiceFallbackUrl = Values::NONE, $voiceMethod = Values::NONE, $voiceUrl = Values::NONE) {
-        return new CreateMobileOptions($apiVersion, $friendlyName, $smsApplicationSid, $smsFallbackMethod, $smsFallbackUrl, $smsMethod, $smsUrl, $statusCallback, $statusCallbackMethod, $voiceApplicationSid, $voiceCallerIdLookup, $voiceFallbackMethod, $voiceFallbackUrl, $voiceMethod, $voiceUrl);
+    public static function create($apiVersion = Values::NONE, $friendlyName = Values::NONE, $smsApplicationSid = Values::NONE, $smsFallbackMethod = Values::NONE, $smsFallbackUrl = Values::NONE, $smsMethod = Values::NONE, $smsUrl = Values::NONE, $statusCallback = Values::NONE, $statusCallbackMethod = Values::NONE, $voiceApplicationSid = Values::NONE, $voiceCallerIdLookup = Values::NONE, $voiceFallbackMethod = Values::NONE, $voiceFallbackUrl = Values::NONE, $voiceMethod = Values::NONE, $voiceUrl = Values::NONE, $identitySid = Values::NONE, $addressSid = Values::NONE) {
+        return new CreateMobileOptions($apiVersion, $friendlyName, $smsApplicationSid, $smsFallbackMethod, $smsFallbackUrl, $smsMethod, $smsUrl, $statusCallback, $statusCallbackMethod, $voiceApplicationSid, $voiceCallerIdLookup, $voiceFallbackMethod, $voiceFallbackUrl, $voiceMethod, $voiceUrl, $identitySid, $addressSid);
     }
 }
 
@@ -138,8 +145,10 @@ class CreateMobileOptions extends Options {
      * @param string $voiceFallbackUrl The voice_fallback_url
      * @param string $voiceMethod The voice_method
      * @param string $voiceUrl The voice_url
+     * @param string $identitySid The identity_sid
+     * @param string $addressSid The address_sid
      */
-    public function __construct($apiVersion = Values::NONE, $friendlyName = Values::NONE, $smsApplicationSid = Values::NONE, $smsFallbackMethod = Values::NONE, $smsFallbackUrl = Values::NONE, $smsMethod = Values::NONE, $smsUrl = Values::NONE, $statusCallback = Values::NONE, $statusCallbackMethod = Values::NONE, $voiceApplicationSid = Values::NONE, $voiceCallerIdLookup = Values::NONE, $voiceFallbackMethod = Values::NONE, $voiceFallbackUrl = Values::NONE, $voiceMethod = Values::NONE, $voiceUrl = Values::NONE) {
+    public function __construct($apiVersion = Values::NONE, $friendlyName = Values::NONE, $smsApplicationSid = Values::NONE, $smsFallbackMethod = Values::NONE, $smsFallbackUrl = Values::NONE, $smsMethod = Values::NONE, $smsUrl = Values::NONE, $statusCallback = Values::NONE, $statusCallbackMethod = Values::NONE, $voiceApplicationSid = Values::NONE, $voiceCallerIdLookup = Values::NONE, $voiceFallbackMethod = Values::NONE, $voiceFallbackUrl = Values::NONE, $voiceMethod = Values::NONE, $voiceUrl = Values::NONE, $identitySid = Values::NONE, $addressSid = Values::NONE) {
         $this->options['apiVersion'] = $apiVersion;
         $this->options['friendlyName'] = $friendlyName;
         $this->options['smsApplicationSid'] = $smsApplicationSid;
@@ -155,6 +164,8 @@ class CreateMobileOptions extends Options {
         $this->options['voiceFallbackUrl'] = $voiceFallbackUrl;
         $this->options['voiceMethod'] = $voiceMethod;
         $this->options['voiceUrl'] = $voiceUrl;
+        $this->options['identitySid'] = $identitySid;
+        $this->options['addressSid'] = $addressSid;
     }
 
     /**
@@ -319,6 +330,28 @@ class CreateMobileOptions extends Options {
      */
     public function setVoiceUrl($voiceUrl) {
         $this->options['voiceUrl'] = $voiceUrl;
+        return $this;
+    }
+
+    /**
+     * The identity_sid
+     * 
+     * @param string $identitySid The identity_sid
+     * @return $this Fluent Builder
+     */
+    public function setIdentitySid($identitySid) {
+        $this->options['identitySid'] = $identitySid;
+        return $this;
+    }
+
+    /**
+     * The address_sid
+     * 
+     * @param string $addressSid The address_sid
+     * @return $this Fluent Builder
+     */
+    public function setAddressSid($addressSid) {
+        $this->options['addressSid'] = $addressSid;
         return $this;
     }
 

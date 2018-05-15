@@ -3,6 +3,10 @@
 
 namespace Twilio\Http;
 
+// don't load directly
+if ( ! defined( 'ABSPATH' ) ) {
+    die();
+}
 
 use Twilio\Exceptions\EnvironmentException;
 
@@ -10,6 +14,9 @@ class CurlClient implements Client {
     const DEFAULT_TIMEOUT = 60;
     protected $curlOptions = array();
     protected $debugHttp = false;
+
+    public $lastRequest = null;
+    public $lastResponse = null;
 
     public function __construct(array $options = array()) {
         $this->curlOptions = $options;
@@ -21,6 +28,9 @@ class CurlClient implements Client {
                             $timeout = null) {
         $options = $this->options($method, $url, $params, $data, $headers,
                                   $user, $password, $timeout);
+
+        $this->lastRequest = $options;
+        $this->lastResponse = null;
 
         try {
             if (!$curl = curl_init()) {
@@ -77,7 +87,10 @@ class CurlClient implements Client {
                 }
                 error_log("\n$body");
             }
-            return new Response($statusCode, $body, $responseHeaders);
+
+            $this->lastResponse = new Response($statusCode, $body, $responseHeaders);
+
+            return $this->lastResponse;
         } catch (\ErrorException $e) {
             if (isset($curl) && is_resource($curl)) {
                 curl_close($curl);
@@ -102,7 +115,7 @@ class CurlClient implements Client {
             CURLOPT_URL => $url,
             CURLOPT_HEADER => true,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_INFILESIZE => -1,
+            CURLOPT_INFILESIZE => Null,
             CURLOPT_HTTPHEADER => array(),
             CURLOPT_TIMEOUT => $timeout,
         );
