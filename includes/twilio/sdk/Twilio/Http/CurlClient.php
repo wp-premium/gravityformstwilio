@@ -3,10 +3,6 @@
 
 namespace Twilio\Http;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
 
 use Twilio\Exceptions\EnvironmentException;
 

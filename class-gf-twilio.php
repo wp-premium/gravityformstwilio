@@ -835,7 +835,7 @@ class GFTwilio extends GFFeedAddOn {
 			}
 
 			// Find any remaining merge tags (field or meta).
-			preg_match_all( '/{[A-z0-9:^\s]*}/m', $args['body'], $matches, PREG_SET_ORDER );
+			preg_match_all( '/{\S+}/m', $args['body'], $matches, PREG_SET_ORDER );
 			if ( is_array( $matches ) && ! empty( $matches ) ) {
 
 				// Surround merge tags with the <mt> delimiter.
@@ -847,7 +847,7 @@ class GFTwilio extends GFFeedAddOn {
 				$args['body'] = GFCommon::replace_variables( $args['body'], $form, $entry, false, true, false, 'text' );
 
 				// Find any urls from the replaced merge tags and pass to regex_shorten_url.
-				$args['body'] = preg_replace_callback( '~<mt>(https?|ftp):\/\/.*<\/mt>~', array(
+				$args['body'] = preg_replace_callback( '~<mt>(https?|ftp):\/\/(\S+)<\/mt>~', array(
 					$this,
 					'regex_shorten_url'
 				), $args['body'] );
@@ -860,12 +860,17 @@ class GFTwilio extends GFFeedAddOn {
 		} else {
 
 			// Replace merge tags.
-			$args['body'] = GFCommon::replace_variables( $args['body'], $form, $entry, false, true, false, 'text' );
+			$args['body'] = GFCommon::replace_variables( $args['body'], $form, $entry, false, false, false, 'text' );
 
 		}
 
-		// Limit message to 1600 characters.
-		$args['body'] = substr( $args['body'], 0, 1600 );
+		// Limit message to 1560 characters.
+		$max_len = 1560;
+		if ( strlen( $args['body'] ) > $max_len ) {
+			$args['body'] = substr( $args['body'], 0, $max_len - 3 );
+			$args['body'] = $args['body'] . '...';
+		}
+
 
 		// Prepare message if using test API mode.
 		if ( 'test' === rgar( $plugin_settings, 'apiMode' ) && $this->initialize_test_api() ) {
@@ -1254,7 +1259,7 @@ class GFTwilio extends GFFeedAddOn {
 		$request_url = add_query_arg(
 			array(
 				'access_token' => $settings['bitlyAccessToken'],
-				'longUrl'      => $url,
+				'longUrl'      => urlencode( $url ),
 			),
 			$request_url
 		);

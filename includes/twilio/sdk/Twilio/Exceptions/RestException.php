@@ -3,10 +3,6 @@
 
 namespace Twilio\Exceptions;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
 
 class RestException extends TwilioException {
     protected $statusCode;

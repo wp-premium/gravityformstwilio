@@ -9,11 +9,6 @@
 
 namespace Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
 use Twilio\Page;
 
 /**
@@ -38,7 +33,7 @@ class AssignedAddOnPage extends Page {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {
