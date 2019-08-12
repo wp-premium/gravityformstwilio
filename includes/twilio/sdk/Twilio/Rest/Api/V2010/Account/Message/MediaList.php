@@ -9,11 +9,6 @@
 
 namespace Twilio\Rest\Api\V2010\Account\Message;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
 use Twilio\ListResource;
 use Twilio\Options;
 use Twilio\Serialize;
@@ -23,17 +18,17 @@ use Twilio\Version;
 class MediaList extends ListResource {
     /**
      * Construct the MediaList
-     * 
+     *
      * @param Version $version Version that contains the resource
-     * @param string $accountSid The unique sid that identifies this account
-     * @param string $messageSid A string that uniquely identifies this message
-     * @return \Twilio\Rest\Api\V2010\Account\Message\MediaList 
+     * @param string $accountSid The SID of the Account that created this resource
+     * @param string $messageSid The unique string that identifies the resource
+     * @return \Twilio\Rest\Api\V2010\Account\Message\MediaList
      */
     public function __construct(Version $version, $accountSid, $messageSid) {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array('accountSid' => $accountSid, 'messageSid' => $messageSid);
+        $this->solution = array('accountSid' => $accountSid, 'messageSid' => $messageSid, );
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/Messages/' . rawurlencode($messageSid) . '/Media.json';
     }
@@ -45,7 +40,7 @@ class MediaList extends ListResource {
      * is reached.
      * The results are returned as a generator, so this operation is memory
      * efficient.
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param int $limit Upper limit for the number of records to return. stream()
      *                   guarantees to never return more than limit.  Default is no
@@ -69,7 +64,7 @@ class MediaList extends ListResource {
      * Reads MediaInstance records from the API as a list.
      * Unlike stream(), this operation is eager and will load `limit` records into
      * memory before returning.
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param int $limit Upper limit for the number of records to return. read()
      *                   guarantees to never return more than limit.  Default is no
@@ -88,7 +83,7 @@ class MediaList extends ListResource {
     /**
      * Retrieve a single page of MediaInstance records from the API.
      * Request is executed immediately
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param mixed $pageSize Number of records to return, defaults to 50
      * @param string $pageToken PageToken provided by the API
@@ -118,7 +113,7 @@ class MediaList extends ListResource {
     /**
      * Retrieve a specific page of MediaInstance records from the API.
      * Request is executed immediately
-     * 
+     *
      * @param string $targetUrl API-generated URL for the requested results page
      * @return \Twilio\Page Page of MediaInstance
      */
@@ -133,9 +128,9 @@ class MediaList extends ListResource {
 
     /**
      * Constructs a MediaContext
-     * 
-     * @param string $sid Fetch by unique media Sid
-     * @return \Twilio\Rest\Api\V2010\Account\Message\MediaContext 
+     *
+     * @param string $sid The unique string that identifies this resource
+     * @return \Twilio\Rest\Api\V2010\Account\Message\MediaContext
      */
     public function getContext($sid) {
         return new MediaContext(
@@ -148,7 +143,7 @@ class MediaList extends ListResource {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {

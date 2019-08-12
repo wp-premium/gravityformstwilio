@@ -9,11 +9,6 @@
 
 namespace Twilio\Rest\Api\V2010;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
 use Twilio\Options;
 use Twilio\Values;
 
@@ -55,7 +50,7 @@ class CreateAccountOptions extends Options {
 
     /**
      * A human readable description of the account to create, defaults to `SubAccount Created at {YYYY-MM-DD HH:MM meridian}`
-     * 
+     *
      * @param string $friendlyName A human readable description of the account
      * @return $this Fluent Builder
      */
@@ -66,7 +61,7 @@ class CreateAccountOptions extends Options {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {
@@ -91,8 +86,8 @@ class ReadAccountOptions extends Options {
     }
 
     /**
-     * Filter accounts where the friendly name exactly matches the desired FriendlyName
-     * 
+     * Only return the Account resources with friendly names that exactly match this name.
+     *
      * @param string $friendlyName FriendlyName to filter on
      * @return $this Fluent Builder
      */
@@ -102,8 +97,8 @@ class ReadAccountOptions extends Options {
     }
 
     /**
-     * Only show accounts with the given Status
-     * 
+     * Only return Account resources with the given status. Can be `closed`, `suspended` or `active`.
+     *
      * @param string $status Status to filter on
      * @return $this Fluent Builder
      */
@@ -114,7 +109,7 @@ class ReadAccountOptions extends Options {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {
@@ -140,7 +135,7 @@ class UpdateAccountOptions extends Options {
 
     /**
      * Update the human-readable description of this Account
-     * 
+     *
      * @param string $friendlyName FriendlyName to update
      * @return $this Fluent Builder
      */
@@ -150,8 +145,8 @@ class UpdateAccountOptions extends Options {
     }
 
     /**
-     * Alter the status of this account with a given Status
-     * 
+     * Alter the status of this account: use `closed` to irreversibly close this account, `suspended` to temporarily suspend it, or `active` to reactivate it.
+     *
      * @param string $status Status to update the Account with
      * @return $this Fluent Builder
      */
@@ -162,7 +157,7 @@ class UpdateAccountOptions extends Options {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {

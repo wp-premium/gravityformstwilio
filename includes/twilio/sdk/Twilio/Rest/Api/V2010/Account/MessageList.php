@@ -9,11 +9,7 @@
 
 namespace Twilio\Rest\Api\V2010\Account;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
+use Twilio\Exceptions\TwilioException;
 use Twilio\ListResource;
 use Twilio\Options;
 use Twilio\Serialize;
@@ -23,26 +19,27 @@ use Twilio\Version;
 class MessageList extends ListResource {
     /**
      * Construct the MessageList
-     * 
+     *
      * @param Version $version Version that contains the resource
-     * @param string $accountSid The unique sid that identifies this account
-     * @return \Twilio\Rest\Api\V2010\Account\MessageList 
+     * @param string $accountSid The SID of the Account that created the resource
+     * @return \Twilio\Rest\Api\V2010\Account\MessageList
      */
     public function __construct(Version $version, $accountSid) {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array('accountSid' => $accountSid);
+        $this->solution = array('accountSid' => $accountSid, );
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/Messages.json';
     }
 
     /**
      * Create a new MessageInstance
-     * 
-     * @param string $to The phone number to receive the message
+     *
+     * @param string $to The destination phone number
      * @param array|Options $options Optional Arguments
      * @return MessageInstance Newly created MessageInstance
+     * @throws TwilioException When an HTTP error occurs.
      */
     public function create($to, $options = array()) {
         $options = new Values($options);
@@ -58,12 +55,10 @@ class MessageList extends ListResource {
             'MaxPrice' => $options['maxPrice'],
             'ProvideFeedback' => Serialize::booleanToString($options['provideFeedback']),
             'ValidityPeriod' => $options['validityPeriod'],
-            'MaxRate' => $options['maxRate'],
             'ForceDelivery' => Serialize::booleanToString($options['forceDelivery']),
-            'ProviderSid' => $options['providerSid'],
-            'ContentRetention' => $options['contentRetention'],
-            'AddressRetention' => $options['addressRetention'],
             'SmartEncoded' => Serialize::booleanToString($options['smartEncoded']),
+            'InteractiveData' => $options['interactiveData'],
+            'ForceOptIn' => Serialize::booleanToString($options['forceOptIn']),
         ));
 
         $payload = $this->version->create(
@@ -83,7 +78,7 @@ class MessageList extends ListResource {
      * is reached.
      * The results are returned as a generator, so this operation is memory
      * efficient.
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param int $limit Upper limit for the number of records to return. stream()
      *                   guarantees to never return more than limit.  Default is no
@@ -107,7 +102,7 @@ class MessageList extends ListResource {
      * Reads MessageInstance records from the API as a list.
      * Unlike stream(), this operation is eager and will load `limit` records into
      * memory before returning.
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param int $limit Upper limit for the number of records to return. read()
      *                   guarantees to never return more than limit.  Default is no
@@ -126,7 +121,7 @@ class MessageList extends ListResource {
     /**
      * Retrieve a single page of MessageInstance records from the API.
      * Request is executed immediately
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param mixed $pageSize Number of records to return, defaults to 50
      * @param string $pageToken PageToken provided by the API
@@ -158,7 +153,7 @@ class MessageList extends ListResource {
     /**
      * Retrieve a specific page of MessageInstance records from the API.
      * Request is executed immediately
-     * 
+     *
      * @param string $targetUrl API-generated URL for the requested results page
      * @return \Twilio\Page Page of MessageInstance
      */
@@ -173,9 +168,9 @@ class MessageList extends ListResource {
 
     /**
      * Constructs a MessageContext
-     * 
-     * @param string $sid Fetch by unique message Sid
-     * @return \Twilio\Rest\Api\V2010\Account\MessageContext 
+     *
+     * @param string $sid The unique string that identifies the resource
+     * @return \Twilio\Rest\Api\V2010\Account\MessageContext
      */
     public function getContext($sid) {
         return new MessageContext($this->version, $this->solution['accountSid'], $sid);
@@ -183,7 +178,7 @@ class MessageList extends ListResource {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {

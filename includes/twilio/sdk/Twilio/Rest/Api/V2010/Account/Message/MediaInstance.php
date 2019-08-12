@@ -9,11 +9,6 @@
 
 namespace Twilio\Rest\Api\V2010\Account\Message;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
 use Twilio\Deserialize;
 use Twilio\Exceptions\TwilioException;
 use Twilio\InstanceResource;
@@ -21,24 +16,24 @@ use Twilio\Values;
 use Twilio\Version;
 
 /**
- * @property string accountSid
- * @property string contentType
- * @property \DateTime dateCreated
- * @property \DateTime dateUpdated
- * @property string parentSid
- * @property string sid
- * @property string uri
+ * @property string $accountSid
+ * @property string $contentType
+ * @property \DateTime $dateCreated
+ * @property \DateTime $dateUpdated
+ * @property string $parentSid
+ * @property string $sid
+ * @property string $uri
  */
 class MediaInstance extends InstanceResource {
     /**
      * Initialize the MediaInstance
-     * 
+     *
      * @param \Twilio\Version $version Version that contains the resource
      * @param mixed[] $payload The response payload
-     * @param string $accountSid The unique sid that identifies this account
-     * @param string $messageSid A string that uniquely identifies this message
-     * @param string $sid Fetch by unique media Sid
-     * @return \Twilio\Rest\Api\V2010\Account\Message\MediaInstance 
+     * @param string $accountSid The SID of the Account that created this resource
+     * @param string $messageSid The unique string that identifies the resource
+     * @param string $sid The unique string that identifies this resource
+     * @return \Twilio\Rest\Api\V2010\Account\Message\MediaInstance
      */
     public function __construct(Version $version, array $payload, $accountSid, $messageSid, $sid = null) {
         parent::__construct($version);
@@ -64,7 +59,7 @@ class MediaInstance extends InstanceResource {
     /**
      * Generate an instance context for the instance, the context is capable of
      * performing various actions.  All instance actions are proxied to the context
-     * 
+     *
      * @return \Twilio\Rest\Api\V2010\Account\Message\MediaContext Context for this
      *                                                             MediaInstance
      */
@@ -83,8 +78,9 @@ class MediaInstance extends InstanceResource {
 
     /**
      * Deletes the MediaInstance
-     * 
+     *
      * @return boolean True if delete succeeds, false otherwise
+     * @throws TwilioException When an HTTP error occurs.
      */
     public function delete() {
         return $this->proxy()->delete();
@@ -92,8 +88,9 @@ class MediaInstance extends InstanceResource {
 
     /**
      * Fetch a MediaInstance
-     * 
+     *
      * @return MediaInstance Fetched MediaInstance
+     * @throws TwilioException When an HTTP error occurs.
      */
     public function fetch() {
         return $this->proxy()->fetch();
@@ -101,7 +98,7 @@ class MediaInstance extends InstanceResource {
 
     /**
      * Magic getter to access properties
-     * 
+     *
      * @param string $name Property to access
      * @return mixed The requested property
      * @throws TwilioException For unknown properties
@@ -121,7 +118,7 @@ class MediaInstance extends InstanceResource {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {

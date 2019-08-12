@@ -1,0 +1,9 @@
+{
+    "name": "wp-premium/gravityformstwilio",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "classmap": [
+            "."
+        ]
+    }
+}

@@ -9,19 +9,16 @@
 
 namespace Twilio\Rest\Api\V2010\Account\Message;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
 use Twilio\Options;
 use Twilio\Values;
 
 abstract class MediaOptions {
     /**
-     * @param string $dateCreatedBefore Filter by date created
-     * @param string $dateCreated Filter by date created
-     * @param string $dateCreatedAfter Filter by date created
+     * @param string $dateCreatedBefore The `YYYY-MM-DD` value of the resources to
+     *                                  read
+     * @param string $dateCreated The `YYYY-MM-DD` value of the resources to read
+     * @param string $dateCreatedAfter The `YYYY-MM-DD` value of the resources to
+     *                                 read
      * @return ReadMediaOptions Options builder
      */
     public static function read($dateCreatedBefore = Values::NONE, $dateCreated = Values::NONE, $dateCreatedAfter = Values::NONE) {
@@ -31,9 +28,11 @@ abstract class MediaOptions {
 
 class ReadMediaOptions extends Options {
     /**
-     * @param string $dateCreatedBefore Filter by date created
-     * @param string $dateCreated Filter by date created
-     * @param string $dateCreatedAfter Filter by date created
+     * @param string $dateCreatedBefore The `YYYY-MM-DD` value of the resources to
+     *                                  read
+     * @param string $dateCreated The `YYYY-MM-DD` value of the resources to read
+     * @param string $dateCreatedAfter The `YYYY-MM-DD` value of the resources to
+     *                                 read
      */
     public function __construct($dateCreatedBefore = Values::NONE, $dateCreated = Values::NONE, $dateCreatedAfter = Values::NONE) {
         $this->options['dateCreatedBefore'] = $dateCreatedBefore;
@@ -42,9 +41,10 @@ class ReadMediaOptions extends Options {
     }
 
     /**
-     * Only show media created on the given date, or before/after using date inequalities.
-     * 
-     * @param string $dateCreatedBefore Filter by date created
+     * The `date_created` value, specified as `YYYY-MM-DD`, of the resources to read. You can also specify inequality, such as `DateCreated<=YYYY-MM-DD` for media generated at or before midnight on a date, and `DateCreated>=YYYY-MM-DD` for media generated at or after midnight on a date.
+     *
+     * @param string $dateCreatedBefore The `YYYY-MM-DD` value of the resources to
+     *                                  read
      * @return $this Fluent Builder
      */
     public function setDateCreatedBefore($dateCreatedBefore) {
@@ -53,9 +53,9 @@ class ReadMediaOptions extends Options {
     }
 
     /**
-     * Only show media created on the given date, or before/after using date inequalities.
-     * 
-     * @param string $dateCreated Filter by date created
+     * The `date_created` value, specified as `YYYY-MM-DD`, of the resources to read. You can also specify inequality, such as `DateCreated<=YYYY-MM-DD` for media generated at or before midnight on a date, and `DateCreated>=YYYY-MM-DD` for media generated at or after midnight on a date.
+     *
+     * @param string $dateCreated The `YYYY-MM-DD` value of the resources to read
      * @return $this Fluent Builder
      */
     public function setDateCreated($dateCreated) {
@@ -64,9 +64,10 @@ class ReadMediaOptions extends Options {
     }
 
     /**
-     * Only show media created on the given date, or before/after using date inequalities.
-     * 
-     * @param string $dateCreatedAfter Filter by date created
+     * The `date_created` value, specified as `YYYY-MM-DD`, of the resources to read. You can also specify inequality, such as `DateCreated<=YYYY-MM-DD` for media generated at or before midnight on a date, and `DateCreated>=YYYY-MM-DD` for media generated at or after midnight on a date.
+     *
+     * @param string $dateCreatedAfter The `YYYY-MM-DD` value of the resources to
+     *                                 read
      * @return $this Fluent Builder
      */
     public function setDateCreatedAfter($dateCreatedAfter) {
@@ -76,7 +77,7 @@ class ReadMediaOptions extends Options {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {
