@@ -9,11 +9,6 @@
 
 namespace Twilio\Rest\Api\V2010\Account;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
 use Twilio\Page;
 
 class MessagePage extends Page {
@@ -30,7 +25,7 @@ class MessagePage extends Page {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {

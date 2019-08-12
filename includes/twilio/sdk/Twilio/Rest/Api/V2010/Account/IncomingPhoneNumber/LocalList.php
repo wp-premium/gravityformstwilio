@@ -9,11 +9,7 @@
 
 namespace Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber;
 
-// don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-    die();
-}
-
+use Twilio\Exceptions\TwilioException;
 use Twilio\ListResource;
 use Twilio\Options;
 use Twilio\Serialize;
@@ -23,16 +19,16 @@ use Twilio\Version;
 class LocalList extends ListResource {
     /**
      * Construct the LocalList
-     * 
+     *
      * @param Version $version Version that contains the resource
-     * @param string $accountSid The unique sid that identifies this account
-     * @return \Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber\LocalList 
+     * @param string $accountSid The SID of the Account that created the resource
+     * @return \Twilio\Rest\Api\V2010\Account\IncomingPhoneNumber\LocalList
      */
     public function __construct(Version $version, $accountSid) {
         parent::__construct($version);
 
         // Path Solution
-        $this->solution = array('accountSid' => $accountSid);
+        $this->solution = array('accountSid' => $accountSid, );
 
         $this->uri = '/Accounts/' . rawurlencode($accountSid) . '/IncomingPhoneNumbers/Local.json';
     }
@@ -44,7 +40,7 @@ class LocalList extends ListResource {
      * is reached.
      * The results are returned as a generator, so this operation is memory
      * efficient.
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param int $limit Upper limit for the number of records to return. stream()
      *                   guarantees to never return more than limit.  Default is no
@@ -68,7 +64,7 @@ class LocalList extends ListResource {
      * Reads LocalInstance records from the API as a list.
      * Unlike stream(), this operation is eager and will load `limit` records into
      * memory before returning.
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param int $limit Upper limit for the number of records to return. read()
      *                   guarantees to never return more than limit.  Default is no
@@ -87,7 +83,7 @@ class LocalList extends ListResource {
     /**
      * Retrieve a single page of LocalInstance records from the API.
      * Request is executed immediately
-     * 
+     *
      * @param array|Options $options Optional Arguments
      * @param mixed $pageSize Number of records to return, defaults to 50
      * @param string $pageToken PageToken provided by the API
@@ -118,7 +114,7 @@ class LocalList extends ListResource {
     /**
      * Retrieve a specific page of LocalInstance records from the API.
      * Request is executed immediately
-     * 
+     *
      * @param string $targetUrl API-generated URL for the requested results page
      * @return \Twilio\Page Page of LocalInstance
      */
@@ -133,10 +129,11 @@ class LocalList extends ListResource {
 
     /**
      * Create a new LocalInstance
-     * 
-     * @param string $phoneNumber The phone_number
+     *
+     * @param string $phoneNumber The phone number to purchase in E.164 format
      * @param array|Options $options Optional Arguments
      * @return LocalInstance Newly created LocalInstance
+     * @throws TwilioException When an HTTP error occurs.
      */
     public function create($phoneNumber, $options = array()) {
         $options = new Values($options);
@@ -174,7 +171,7 @@ class LocalList extends ListResource {
 
     /**
      * Provide a friendly representation
-     * 
+     *
      * @return string Machine friendly representation
      */
     public function __toString() {
