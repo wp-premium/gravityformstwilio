@@ -21,7 +21,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Contains an instance of this class, if available.
 	 *
 	 * @since  Unknown
-	 * @access private
 	 * @var    object $_instance If available, contains an instance of this class.
 	 */
 	private static $_instance = null;
@@ -30,7 +29,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the version of the Twilio Add-On.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_version Contains the version, defined from twilio.php
 	 */
 	protected $_version = GF_TWILIO_VERSION;
@@ -39,7 +37,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the minimum Gravity Forms version required.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_min_gravityforms_version The minimum version required.
 	 */
 	protected $_min_gravityforms_version = '1.9.11';
@@ -48,7 +45,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the plugin slug.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_slug The slug used for this plugin.
 	 */
 	protected $_slug = 'gravityformstwilio';
@@ -57,7 +53,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the main plugin file.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_path The path to the main plugin file, relative to the plugins folder.
 	 */
 	protected $_path = 'gravityformstwilio/twilio.php';
@@ -66,7 +61,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the full path to this class file.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_full_path The full path.
 	 */
 	protected $_full_path = __FILE__;
@@ -75,7 +69,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the URL where this Add-On can be found.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string The URL of the Add-On.
 	 */
 	protected $_url = 'http://www.gravityforms.com';
@@ -84,7 +77,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the title of this Add-On.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_title The title of the Add-On.
 	 */
 	protected $_title = 'Twilio Add-On';
@@ -93,7 +85,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the short title of the Add-On.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_short_title The short title.
 	 */
 	protected $_short_title = 'Twilio';
@@ -102,7 +93,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines if Add-On should use Gravity Forms servers for update data.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    bool
 	 */
 	protected $_enable_rg_autoupgrade = true;
@@ -111,7 +101,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the capability needed to access the Add-On settings page.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_capabilities_settings_page The capability needed to access the Add-On settings page.
 	 */
 	protected $_capabilities_settings_page = 'gravityforms_twilio';
@@ -120,7 +109,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the capability needed to access the Add-On form settings page.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_capabilities_form_settings The capability needed to access the Add-On form settings page.
 	 */
 	protected $_capabilities_form_settings = 'gravityforms_twilio';
@@ -129,7 +117,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the capability needed to uninstall the Add-On.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    string $_capabilities_uninstall The capability needed to uninstall the Add-On.
 	 */
 	protected $_capabilities_uninstall = 'gravityforms_twilio_uninstall';
@@ -138,7 +125,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Defines the capabilities needed for the Twilio Add-On.
 	 *
 	 * @since  Unknown
-	 * @access protected
 	 * @var    array $_capabilities The capabilities needed for the Add-On.
 	 */
 	protected $_capabilities = array( 'gravityforms_twilio', 'gravityforms_twilio_uninstall' );
@@ -147,7 +133,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Contains an instance of the Twilio API library, if available.
 	 *
 	 * @since  2.4
-	 * @access protected
 	 * @var    object $twilio If available, contains an instance of the Twilio API library.
 	 */
 	protected $twilio = null;
@@ -156,16 +141,20 @@ class GFTwilio extends GFFeedAddOn {
 	 * Contains an instance of the Twilio test API library, if available.
 	 *
 	 * @since  2.4
-	 * @access protected
 	 * @var    object $twilio_test If available, contains an instance of the Twilio test API library.
 	 */
 	protected $twilio_test = null;
 
 	/**
-	 * Get instance of this class.
+	 * Contains an instance of the GF_Bitly_Api class.
 	 *
-	 * @access public
-	 * @static
+	 * @since 2.9
+	 * @var GF_Bitly_Api $bitly GF_Bitly_Api instance.
+	 */
+	protected $bitly = null;
+
+	/**
+	 * Get instance of this class.
 	 *
 	 * @return GFTwilio
 	 */
@@ -183,7 +172,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Plugin starting point. Handles hooks, loading of language files and PayPal delayed payment support.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 */
 	public function init() {
 
@@ -197,6 +185,19 @@ class GFTwilio extends GFFeedAddOn {
 
 	}
 
+	/**
+	 * Return the plugin's icon for the plugin/form settings menu.
+	 *
+	 * @since 2.7
+	 *
+	 * @return string
+	 */
+	public function get_menu_icon() {
+
+		return file_get_contents( $this->get_base_path() . '/images/menu-icon.svg' );
+
+	}
+
 
 
 
@@ -207,7 +208,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Configures the settings which should be rendered on the add-on settings tab.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @return array
 	 */
@@ -314,10 +314,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Setup fields for feed settings.
 	 *
 	 * @since  Unknown
-	 * @access public
-	 *
-	 * @uses GFTwilio::get_current_account()
-	 * @uses GFTwilio::get_phone_numbers_as_choices()
 	 *
 	 * @return array
 	 */
@@ -344,6 +340,7 @@ class GFTwilio extends GFFeedAddOn {
 						'name'                => 'fromNumber',
 						'label'               => esc_html__( 'From', 'gravityformstwilio' ),
 						'type'                => 'select_custom',
+						'callback'            => version_compare( GFForms::$version, '2.5-dev-1', '<' ) ? array( $this, 'settings_legacy_select_custom' ) : '',
 						'choices'             => $this->get_phone_numbers_as_choices( 'incoming_numbers' ),
 						'required'            => true,
 						'validation_callback' => array( $this, 'validate_from' ),
@@ -357,6 +354,7 @@ class GFTwilio extends GFFeedAddOn {
 						'name'                => 'toNumber',
 						'label'               => esc_html__( 'To Number', 'gravityformstwilio' ),
 						'type'                => 'select_custom',
+						'callback'            => version_compare( GFForms::$version, '2.5-dev-1', '<' ) ? array( $this, 'settings_legacy_select_custom' ) : '',
 						'choices'             => $this->get_phone_numbers_as_choices( 'outgoing_numbers' ),
 						'required'            => true,
 						'input_class'         => 'merge-tag-support mt-position-right',
@@ -415,15 +413,8 @@ class GFTwilio extends GFFeedAddOn {
 	 * Retrieve the from/to numbers for use on the feed settings page.
 	 *
 	 * @since  2.4
-	 * @access public
 	 *
 	 * @param string $type The phone number type. Either incoming_numbers or outgoing_numbers.
-	 *
-	 * @uses GFAddOn::get_current_form()
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFAddOn::log_error()
-	 * @uses GFAPI::get_fields_by_type()
-	 * @uses GFTwilio::initialize_api()
 	 *
 	 * @return array
 	 */
@@ -450,15 +441,21 @@ class GFTwilio extends GFFeedAddOn {
 			// Log that we could not get the phone numbers.
 			$this->log_error( __METHOD__ . '(): Unable to get the ' . $type . '; ' . $e->getMessage() . ' (' . $e->getCode() . ')' );
 
-			return $phone_numbers;
+			return array();
 
 		}
+
+		$first_choice_label = array(
+			'label' => esc_html__( 'Select a Number', 'gravityformstwilio' ),
+			'value' => '',
+		);
 
 		// Prepare options by type.
 		if ( 'incoming_numbers' === $type ) {
 
 			// Initialize phone numbers array.
 			$phone_numbers = array(
+				$first_choice_label,
 				array(
 					'label'   => esc_html__( 'Twilio Phone Numbers', 'gravityformstwilio' ),
 					'choices' => array(),
@@ -473,17 +470,18 @@ class GFTwilio extends GFFeedAddOn {
 			foreach ( $twilio_numbers as $twilio_number ) {
 
 				// Add Twilio phone number as choice.
-				$phone_numbers[0]['choices'][] = array(
+				$phone_numbers[1]['choices'][] = array(
 					'label' => esc_html( $twilio_number->phoneNumber ),
 					'value' => esc_attr( $twilio_number->phoneNumber ),
 				);
 
 			}
 
-		} else if ( 'outgoing_numbers' === $type ) {
+		} elseif ( 'outgoing_numbers' === $type ) {
 
 			// Initialize phone numbers array.
 			$phone_numbers = array(
+				$first_choice_label,
 				array(
 					'label'   => esc_html__( 'Phone Fields', 'gravityformstwilio' ),
 					'choices' => array(),
@@ -511,7 +509,7 @@ class GFTwilio extends GFFeedAddOn {
 				foreach ( $phone_fields as $phone_field ) {
 
 					// Add Phone field as choice.
-					$phone_numbers[0]['choices'][] = array(
+					$phone_numbers[1]['choices'][] = array(
 						'label' => esc_html( $phone_field->label ),
 						'value' => 'field_' . esc_attr( $phone_field->id ),
 					);
@@ -524,7 +522,7 @@ class GFTwilio extends GFFeedAddOn {
 			foreach ( $twilio_numbers as $twilio_number ) {
 
 				// Add Twilio phone number as choice.
-				$phone_numbers[1]['choices'][] = array(
+				$phone_numbers[2]['choices'][] = array(
 					'label' => esc_html( $twilio_number->phoneNumber ),
 					'value' => esc_attr( $twilio_number->phoneNumber ),
 				);
@@ -541,13 +539,9 @@ class GFTwilio extends GFFeedAddOn {
 	 * Validate the text input for the message From setting.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @param array  $field         The field setting.
 	 * @param string $field_setting The field value.
-	 *
-	 * @uses GFAddOn::get_posted_settings()
-	 * @uses GFAddOn::set_field_error()
 	 */
 	public function validate_from( $field, $field_setting ) {
 
@@ -566,9 +560,9 @@ class GFTwilio extends GFFeedAddOn {
 		if ( rgblank( $from ) ) {
 			$this->set_field_error( $field );
 		} elseif ( strlen( $from ) > 11 ) {
-			$this->set_field_error( $field, __( 'The Alphanumeric Sender ID must be no longer than 11 characters.' ), 'gravityformstwilio' );
+			$this->set_field_error( $field, __( 'The Alphanumeric Sender ID must be no longer than 11 characters.', 'gravityformstwilio' ) );
 		} elseif ( ! preg_match( '/^[a-zA-Z0-9 ]+$/', $from ) ) {
-			$this->set_field_error( $field, __( 'The Alphanumeric Sender ID only supports upper and lower case letters, the digits 0 through 9, and spaces.' ), 'gravityformstwilio' );
+			$this->set_field_error( $field, __( 'The Alphanumeric Sender ID only supports upper and lower case letters, the digits 0 through 9, and spaces.', 'gravityformstwilio' ) );
 		}
 
 	}
@@ -578,14 +572,13 @@ class GFTwilio extends GFFeedAddOn {
 	 * (Forked to add support for merge tags in input field.)
 	 *
 	 * @since  2.4
-	 * @access public
 	 *
 	 * @param array $field Field array containing the configuration options of this field
 	 * @param bool  $echo  True to echo the output to the screen, false to simply return the contents as a string
 	 *
 	 * @return string The HTML for the field
 	 */
-	public function settings_select_custom( $field, $echo = true ) {
+	public function settings_legacy_select_custom( $field, $echo = true ) {
 
 		// Prepare select field.
 		$select_field             = $field;
@@ -653,9 +646,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Set feed creation control.
 	 *
 	 * @since  Unknown
-	 * @access public
-	 *
-	 * @use GFTwilio::initialize_api()
 	 *
 	 * @return bool
 	 */
@@ -665,6 +655,20 @@ class GFTwilio extends GFFeedAddOn {
 
 	}
 
+	/**
+	 * Allow the feed to be duplicated.
+	 *
+	 * @since 2.7
+	 *
+	 * @param array|int $id The ID of the feed to be duplicated or the feed object when duplicating a form.
+	 *
+	 * @return bool
+	 */
+	public function can_duplicate_feed( $id ) {
+
+		return true;
+
+	}
 
 
 
@@ -675,7 +679,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Setup columns for feed list table.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @return array
 	 */
@@ -693,11 +696,8 @@ class GFTwilio extends GFFeedAddOn {
 	 * Returns the value to be displayed in the From column.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @param array $feed Feed object.
-	 *
-	 * @uses GFTwilio::get_message_from()
 	 *
 	 * @return string
 	 */
@@ -711,13 +711,8 @@ class GFTwilio extends GFFeedAddOn {
 	 * Returns the value to be displayed in the From column.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @param array $feed Feed object.
-	 *
-	 * @uses GFAddOn::get_current_form()
-	 * @uses GFFormsModel::get_field()
-	 * @uses GFTwilio::get_message_from()
 	 *
 	 * @return string
 	 */
@@ -759,17 +754,10 @@ class GFTwilio extends GFFeedAddOn {
 	 * Initiate processing the feed.
 	 *
 	 * @since  2.0
-	 * @access public
 	 *
 	 * @param array $feed  The Feed object to be processed.
 	 * @param array $entry The Entry object currently being processed.
 	 * @param array $form  The Form object currently being processed.
-	 *
-	 * @uses GFAddOn::get_plugin_settings()
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFCommon::replace_variables()
-	 * @uses GFFeedAddOn::add_feed_error()
-	 * @uses GFTwilio::get_message_form()
 	 */
 	public function process_feed( $feed, $entry, $form ) {
 
@@ -815,7 +803,6 @@ class GFTwilio extends GFFeedAddOn {
 
 		// Replace merge tags and shorten URLs in message.
 		if ( $args['shorten_url'] ) {
-
 			// Remove spaces from all merge tags; we need to do this so we can handle URLs that have spaces in them.
 			preg_match_all( '/{[^{]*?:(\d+(\.\d+)?)(:(.*?))?}/mi', $args['body'], $matches, PREG_SET_ORDER );
 			if ( is_array( $matches ) ) {
@@ -925,11 +912,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Initializes Twilio API if credentials are valid.
 	 *
 	 * @since  2.4
-	 * @access public
-	 *
-	 * @uses GFAddOn::get_plugin_settings()
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFAddOn::log_error()
 	 *
 	 * @return bool|null
 	 */
@@ -939,6 +921,8 @@ class GFTwilio extends GFFeedAddOn {
 		if ( ! is_null( $this->twilio ) ) {
 			return true;
 		}
+
+		require_once $this->get_base_path() . '/includes/class-gf-bitly-api.php';
 
 		// Load the API library.
 		if ( ! class_exists( '\Twilio\Rest\Client' ) ) {
@@ -987,11 +971,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Initializes test Twilio API if credentials are valid.
 	 *
 	 * @since  2.4
-	 * @access public
-	 *
-	 * @uses GFAddOn::get_plugin_settings()
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFAddOn::log_error()
 	 *
 	 * @return bool|null
 	 */
@@ -1054,10 +1033,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Get current Twilio account details.
 	 *
 	 * @since  2.4
-	 * @access public
-	 *
-	 * @uses GFAddOn::log_error()
-	 * @uses GFTwilio::initialize_api()
 	 *
 	 * @return object|bool
 	 */
@@ -1090,7 +1065,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Return the from number or Alphanumeric Sender ID.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @param array $feed The Feed object.
 	 *
@@ -1106,13 +1080,10 @@ class GFTwilio extends GFFeedAddOn {
 	 * Return the To Number.
 	 *
 	 * @since  2.4
-	 * @access public
 	 *
 	 * @param array $feed  The Feed object.
 	 * @param array $entry The Entry object.
 	 * @param array $form  The Form object.
-	 *
-	 * @uses GFCommon::replace_variables()
 	 *
 	 * @return string
 	 */
@@ -1148,152 +1119,77 @@ class GFTwilio extends GFFeedAddOn {
 	// # BITLY ---------------------------------------------------------------------------------------------------------
 
 	/**
+	 * Get the instance of the Bitly API class.
+	 *
+	 * @return GF_Bitly_Api
+	 */
+	private function bitly() {
+		if ( ! is_a( $this->bitly, 'GF_Bitly_Api' ) ) {
+			$this->bitly = new GF_Bitly_Api( $this, $this->get_plugin_setting( 'bitlyAccessToken' ) );
+		}
+
+		return $this->bitly;
+	}
+
+	/**
 	 * Determine if Bitly URL shortening is allowed.
 	 *
 	 * @since  2.4
-	 * @access public
-	 *
-	 * @uses GFTwilio::validate_bitly_credentials()
-	 * @uses GFTwilio::validate_legacy_bitly_credentials()
 	 *
 	 * @return bool
 	 */
 	public function can_shorten_url() {
-
-		// Validate Bitly credentials.
-		$is_valid = $this->validate_bitly_credentials();
-
-		// Validate Bitly credentials.
-		if ( ! is_null( $is_valid ) ) {
-			return $is_valid;
-		}
-
-		// Validate legacy credentials.
-		return $this->validate_legacy_bitly_credentials();
-
+		return $this->validate_bitly_credentials();
 	}
 
 	/**
 	 * Validate Bitly credentials.
 	 *
 	 * @since  2.4
-	 * @access public
 	 *
 	 * @param string $access_token Bitly access token.
 	 *
-	 * @uses GFAddOn::get_plugin_setting()
-	 * @uses GFAddOn::maybe_decode_json()
-	 *
 	 * @return bool|null
 	 */
-	public function validate_bitly_credentials( $access_token = false ) {
-
-		// If access token was not provided, retrieve it.
-		if ( false === $access_token ) {
-			$access_token = $this->get_plugin_setting( 'bitlyAccessToken' );
-		}
-
-		// If access token is not set, return.
-		if ( rgblank( $access_token ) ) {
-			return null;
-		}
-
-		// Get Bitly user info.
-		$user_info = wp_remote_get( 'https://api-ssl.bitly.com/v3/user/info?access_token=' . $access_token );
-
-		// If request was unsuccessful, return.
-		if ( is_wp_error( $user_info ) ) {
-			return false;
-		}
-
-		// Decode response.
-		$user_info = wp_remote_retrieve_body( $user_info );
-		$user_info = $this->maybe_decode_json( $user_info );
-
-		// If response is not an array, return.
-		if ( ! is_array( $user_info ) ) {
-			return false;
-		}
-
-		return 200 === $user_info['status_code'];
-
+	public function validate_bitly_credentials() {
+		return $this->bitly()->validate_credentials();
 	}
 
 	/**
 	 * Shorten the supplied url using Bitly.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @param string $url The url to shorten.
-	 *
-	 * @uses GFAddOn::get_plugin_settings()
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFAddOn::log_error()
-	 * @uses GFAddOn::maybe_decode_json()
-	 * @uses GFTwilio::legacy_shorten_url()
 	 *
 	 * @return string
 	 */
 	public function shorten_url( $url ) {
 
-		// Get plugin settings.
-		$settings = $this->get_plugin_settings();
-
-		// If legacy Bitly credentials exist, use legacy shortener.
-		if ( ! rgar( $settings, 'bitlyAccessToken' ) && rgar( $settings, 'bitlyLogin' ) && rgar( $settings, 'bitlyApikey' ) ) {
-			$this->log_debug( __METHOD__ . '(): Using legacy URL shortener.' );
-			return $this->legacy_shorten_url( $url );
-		}
+		$this->log_debug( __METHOD__ . '(): Running for: ' . $url );
 
 		// If access token is set but invalid, return.
-		if ( rgar( $settings, 'bitlyAccessToken') && ! $this->validate_bitly_credentials() ) {
+		if ( ! $this->bitly()->validate_credentials() ) {
 			$this->log_error( __METHOD__ . '(): Unable to shorten URL; invalid Bitly access token provided.' );
 			return $url;
 		}
 
-		// Prepare base API request URL.
-		$request_url = 'https://api-ssl.bitly.com/v3/shorten';
+		$shortened_url = $this->bitly()->get_shortened_url( $url );
 
-		// Add request parameters.
-		$request_url = add_query_arg(
-			array(
-				'access_token' => $settings['bitlyAccessToken'],
-				'longUrl'      => urlencode( $url ),
-			),
-			$request_url
-		);
-
-		// Shorten URL.
-		$shortened_url = wp_remote_get( $request_url );
-
-		// If request was unsuccessful, return.
-		if ( is_wp_error( $shortened_url ) ) {
+		if ( empty( $shortened_url ) || $url === $shortened_url ) {
+			$this->log_error( __METHOD__ . "(): Unable to shorten URL; {$shortened_url}" );
 			return $url;
 		}
 
-		// Decode response.
-		$shortened_url = wp_remote_retrieve_body( $shortened_url );
-		$shortened_url = $this->maybe_decode_json( $shortened_url );
-
-		// If response is not an array or an invalid status code is returned, return.
-		if ( ! is_array( $shortened_url ) || 200 !== $shortened_url['status_code'] ) {
-			return $url;
-		}
-
-		return $shortened_url['data']['url'];
-
+		return $shortened_url;
 	}
 
 	/**
 	 * Shorten URLs from the message body.
 	 *
 	 * @since  Unknown
-	 * @access public
 	 *
 	 * @param array $matches The URL to be shortened.
-	 *
-	 * @uses GFTwilio::shorten_url()
 	 *
 	 * @return string
 	 */
@@ -1309,10 +1205,11 @@ class GFTwilio extends GFFeedAddOn {
 	/**
 	 * Check if the Bitly credentials are valid by testing if a url can be shortened.
 	 *
-	 * @since  2.4
-	 * @access public
+	 * @deprecated 2.8
 	 *
-	 * @uses GFTwilio::legacy_shorten_url()
+	 * @since      2.4
+	 *
+	 * @uses       GFTwilio::legacy_shorten_url()
 	 *
 	 * @return bool
 	 */
@@ -1327,14 +1224,11 @@ class GFTwilio extends GFFeedAddOn {
 	/**
 	 * Shorten the supplied URL using legacy Bitly endpoint.
 	 *
-	 * @since  2.4
-	 * @access public
+	 * @deprecated 2.8 Bitly no longer allows login + api_key API authentication.
+	 *
+	 * @since      2.4
 	 *
 	 * @param string $url The URL to shorten.
-	 *
-	 * @uses GFAddOn::get_plugin_settings()
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFAddOn::log_error()
 	 *
 	 * @return string
 	 */
@@ -1343,17 +1237,11 @@ class GFTwilio extends GFFeedAddOn {
 		// Log the URL to be shortened.
 		$this->log_debug( __METHOD__ . "(): Processing URL => {$url}" );
 
-		// Prepare request parameters.
-		$encoded_url = urlencode( $url );
-		$settings    = $this->get_plugin_settings();
-		$login       = urlencode( rgar( $settings, 'bitlyLogin' ) );
-		$apikey      = urlencode( rgar( $settings, 'bitlyApikey' ) );
-
 		// Shorten URL.
-		$response = wp_remote_get( "http://api.bit.ly/v3/shorten?login={$login}&apiKey={$apikey}&longUrl={$encoded_url}&format=txt" );
+		$response = $this->bitly()->do_shorten_request( $url );
 
 		// If URL could not be shortened, return.
-		if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {
+		if ( ! $this->bitly()->is_successful_response( $response ) ) {
 			$this->log_error( __METHOD__ . '(): Unable to shorten URL. Not changing.' );
 			return $url;
 		}
@@ -1378,20 +1266,8 @@ class GFTwilio extends GFFeedAddOn {
 	 * Checks if a previous version was installed and if the feeds need migrating to the framework structure.
 	 *
 	 * @since  2.0
-	 * @access public
 	 *
 	 * @param string $previous_version The version number of the previously installed version.
-	 *
-	 * @uses GFAddOn::get_plugin_settings()
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFAddOn::log_error()
-	 * @uses GFAddOn::update_plugin_settings()
-	 * @uses GFFeedAddOn::get_feeds()
-	 * @uses GFFeedAddOn::insert_feed()
-	 * @uses GFFeedAddOn::update_feed_meta()
-	 * @uses GFTwilio::copy_feeds()
-	 * @uses GFTwilio::initialize_api()
-	 * @uses GFTwilio::update_paypal_delay_settings()
 	 */
 	public function upgrade( $previous_version ) {
 
@@ -1536,14 +1412,8 @@ class GFTwilio extends GFFeedAddOn {
 	 * Migrate the delayed payment setting for the PayPal Add-On integration.
 	 *
 	 * @since  2.0
-	 * @access public
 	 *
 	 * @param string $old_delay_setting_name
-	 *
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFFeedAddOn::get_feeds_by_slug()
-	 * @uses GFFeedAddOn::update_feed_meta()
-	 * @uses wpdb::update()
 	 */
 	public function update_paypal_delay_settings( $old_delay_setting_name ) {
 
@@ -1617,12 +1487,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Retrieve any old PayPal feeds.
 	 *
 	 * @since  2.0
-	 * @access public
-	 *
-	 * @uses GFAddOn::log_debug()
-	 * @uses GFAddOn::table_exists()
-	 * @uses GFFormsModel::get_form_table_name()
-	 * @uses wpdb::table_exists()
 	 *
 	 * @return bool|array
 	 */
@@ -1674,11 +1538,6 @@ class GFTwilio extends GFFeedAddOn {
 	 * Retrieve any old feeds which need migrating to the framework.
 	 *
 	 * @since 2.0
-	 * @access public
-	 *
-	 * @uses GFAddOn::table_exists()
-	 * @uses GFFormsModel::get_form_table_name()
-	 * @uses wpdb::table_exists()
 	 *
 	 * @return bool|array
 	 */
